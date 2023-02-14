@@ -1,0 +1,25 @@
+mongo - humongous (because it can store lots of data)
+
+Database - shop
+Collections - users, orders
+Documents - JavaScript Objects like structure (Schemaless stuff) - JSON 
+
+
+{
+    "name": "Max",
+    "age": 29,
+    "address": 
+        {
+            "city" : "Munich"
+        }
+}
+
+No/Few relations are there only
+
+--- COMMANDS USED ---
+show dbs
+use shop
+db.products.insertOne({"name" : "Mayank"});
+db.products.find()
+db.products.find().pretty()
+
