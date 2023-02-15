@@ -1,0 +1,88 @@
+- Things are created on demand --
+
+show dbs
+use flights
+db.flightData.insertOne({JSON});
+
+JSON Data
+[
+  {
+    "departureAirport": "MUC",
+    "arrivalAirport": "SFO",
+    "aircraft": "Airbus A380",
+    "distance": 12000,
+    "intercontinental": true
+  },
+  {
+    "departureAirport": "LHR",
+    "arrivalAirport": "TXL",
+    "aircraft": "Airbus A320",
+    "distance": 950,
+    "intercontinental": false
+  }
+]
+
+db.flightData.find().pretty()
+
+JSON vs BSON
+-> behind the scene mongodb store in BSON format
+
+_id : "txl-hr1"    //giving custom id to document in a collection
+
+//CRUD operations
+insertOne(data, options)
+insertMany(data, options)
+find(filter, options)
+findOne(filter, options)
+updateOne(filter, data, options)
+updateMany(filter, data, options)
+replaceOne(filter, data, options)
+deleteOne(filter, options)
+deleteMany(filter, options)
+
+db.flightsData.deleteOne({departureAirport : "TXL"})   //delete one on the basis of filter
+db.flightsData.deleteMany()
+db.flightsData.updateOne({distance : 12000}, {$set : {marker:'delete'}})  //first filter tell which documet, next tells what to set!
+db.flightsData.updateMany({}, {$set : {marker:'delete'}})   //updates all
+db.fightsData.deleteMany({marker:'delete'})
+
+db.flightsData.insertMany([])  //data is added as a array of objects, simple as that
+db.flightData.find({name : "Max"})
+db.flightData.find({intercontinental : true})
+db.flightsData.find({distance : 12000})
+db.flightsData.find({distance : {$gt : 10000}})  //greater than , and finding for all matching elements
+db.flightsData.findOne({distance : {$gt : 10000}})  //greater than , only the first matching element
+
+db.flightsData.updateOne({_id: ObjectId("slfjaskljf")}, {$set : {delayed : true}})  //updating on the basis of ID
+db.flightsData.update({_id: ObjectId("slfjaskljf")}, {$set : {delayed : false}})  //updating on the basis of ID
+
+
+//diff in update and updateMany??  (kinda depreciated shit bro, look into it)
+//update basically what does is na if I don't take $set shit, it will complete replace all 
+//the contents of that obejct document from the one I have given on the right
+db.flightsData.update({_id: ObjectId("slfjaskljf")}, {delayed : false})  //updating on the basis of ID
+
+db.flightData.replaceOne({_id: ObjectId("lksjf"), {new object} })  //safer way of replace data simple 
+
+find() --> doesnt gives array of document, rather it gives us cursor object, to cycle through the data
+db.passengers.find().toArray()   //this will exhaust the cursor, and return us the complete data - as simple as that
+db.passengers.find().forEach((data) => {
+  printjson(data)
+})   //to apply something on each document
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
