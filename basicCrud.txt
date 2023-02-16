@@ -70,6 +70,29 @@ db.passengers.find().forEach((data) => {
   printjson(data)
 })   //to apply something on each document
 
+//figure out forEach how it works???
+
+//Projections - asking only for the data which is required (saving bandwidth)
+db.passengers.find({}, {name : 1}).pretty()  //1 above means we need it in our data
+db.passengers.find({}, {name : 1, _id:0}).pretty()  //id is always returned back, by default it is 1, so if you want to remove it simply put it as 0
+
+//we can have nested document
+//we can have nested arrays as well
+
+//suppose we have nested array examples - by updating some specific name right?
+db.passengers.updateOne({name : "Gordon Black"}, {$set : {hobbies : ["sports", "cookies"]}});
+
+--> next what we could do is basically
+db.passengers.findOne({hobbies : "sports"})
+//and the above command will return that data, because it goes inside hobbies array and searches for it.
+
+db.passengers.findOne({"status.description" : "on-time"}).pretty()
+//for quering inside objects ke objects (this should be pretty simple enough)
+
+
+
+
+
 
 
 
