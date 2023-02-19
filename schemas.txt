@@ -1,0 +1,41 @@
+//For dropping databases
+use databaseName
+db.dropDatabase()
+
+//For dropping individual collections
+db.myCollection.drop()
+
+//mongoDB doesn't enforce shema
+//three levels 
+//one - no, nothing schema
+//second - some sort of schema for some properties, but not all
+//third - if values is not there, simply put null in there -- SQL world bitch
+
+Data Types we have in here
+(16mb document limit is only there)
+
+Text = "Max"  
+Boolean = true
+Number 
+ -Integer(int32)
+ -NumberLong(int64)
+ -NumberDecimal
+ObjectId = Objectid("sfasf")
+ISODate = IODate("1231-92-93")
+Timestamp = Timestamp(123123123)
+Embedded Document = {"a": {"b" : "c"}}
+Array = {"a": ["b" ,"c"]}
+
+ 
+ //made more mongo changes bro
+
+
+
+ 
+
+
+
+
+
+
+
